@@ -5,11 +5,12 @@
   margin: 10px;
   .wrapper__job {
     display: flex;
+    cursor: pointer;
     max-width: 1400px;
     margin: 4px auto;
-    background: #eff0f5;
     border-radius: 8px;
     padding: 16px;
+    background-color: #fff;
     .job__photo {
       margin-top: 45px;
       img {
@@ -25,19 +26,46 @@
       }
     }
     .job__info {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      width: 100%;
+      @media screen and (max-width: 930px) {
+        flex-direction: column;
+        .job__info__stats {
+          .stats__bookmark {
+            visibility: hidden;
+          }
+        }
+      }
       .job__info__stats {
         display: flex;
-        justify-content: space-between;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        .stats__bookmark {
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: #70778b;
+          cursor: pointer;
+        }
         .stats__rate {
-            display: flex;
+          display: flex;
           color: #384564;
+          align-items: center;
         }
         .stats__date {
+          display: flex;
           font-weight: 300;
           font-size: 14px;
           line-height: 17px;
           letter-spacing: 0.206667px;
           color: #878d9d;
+          white-space: nowrap;
+          position: absolute;
+          bottom: 0;
+          right: 0;
         }
       }
       .job__info__main {

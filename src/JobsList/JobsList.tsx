@@ -1,24 +1,30 @@
 import React, { FC, ReactNode, useEffect, useState } from "react";
 import DataOperator from "../server/DataOperator";
 import { TJobDataPreview } from "../server/types";
-import style from "./JobsList.module.css";
+import style from "./JobsList.module.scss";
 import { AiFillStar } from "react-icons/ai";
 import { ImLocation } from "react-icons/im";
+import { BsBookmark } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 const Job: FC<{
   title: string;
   photo: string;
   address: string;
   creationDate: Date;
   departmentName: string;
-}> = ({ title, photo, address, creationDate, departmentName }) => {
+  jobId: string;
+}> = ({ title, photo, address, creationDate, departmentName, jobId }) => {
   return (
-    <div className={style.wrapper__job}>
+    <Link to={"job/" + jobId} className={style.wrapper__job}>
       <div className={style.job__photo}>
         <img alt="job profile" src={photo} />
       </div>
-
       <div className={style.job__info}>
         <div className={style.job__info__stats}>
+          <div className={style.stats__bookmark}>
+            <BsBookmark />
+          </div>
           <div className={style.stats__rate}>
             <AiFillStar />
             <AiFillStar />
@@ -49,11 +55,11 @@ const Job: FC<{
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
-const JobsList: FC<{}> = () => {
+const JobsList = () => {
   const [jobs, setJobs] = useState<ReactNode[]>([]);
   const [IsError, setIsError] = useState<boolean>(false);
   const [IsLoading, setIsLoading] = useState<boolean>(true);
@@ -72,6 +78,7 @@ const JobsList: FC<{}> = () => {
                 photo={job.photo}
                 creationDate={job.creationDate}
                 departmentName={job.name}
+                jobId={job.id}
               />
             </div>
           ))

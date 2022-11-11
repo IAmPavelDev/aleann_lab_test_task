@@ -31,8 +31,6 @@ class DataOperator {
     if (!this.jobs.length) {
       await this.loadJobs();
     }
-    console.log(this.jobs);
-
     return this.jobs.map((job: IJobData) => {
       return {
         photo: job.pictures[0],
@@ -44,7 +42,10 @@ class DataOperator {
       };
     });
   }
-  findJobDataById(id: string) {
+  async findJobDataById(id: string) {
+    if (!this.jobs.length) {
+      await this.loadJobs();
+    }
     return this.jobs.find((job: IJobData) => job.id === id);
   }
 }

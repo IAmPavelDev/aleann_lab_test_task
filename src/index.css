@@ -6,6 +6,8 @@ body {
   font-family: ProximaNova;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: #eff0f5;
 }
 
 code {
@@ -18,3 +20,7 @@ code {
   src: url("./../public/assets/fonts/Proxima\ Nova\ Font.otf")
     format("opentype");
 }
+
+/* .slick-slide {
+  min-width: 210px;
+} */
